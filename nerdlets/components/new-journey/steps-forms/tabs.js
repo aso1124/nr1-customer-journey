@@ -11,7 +11,7 @@ export default class Tabs extends Component {
       handleOnAdd,
       handleOnDelete,
       errorMessage,
-      errorIndexes
+      errorIndexes,
     } = this.props;
 
     return (
@@ -50,7 +50,7 @@ export default class Tabs extends Component {
         <Button
           style={{ marginLeft: '25px', minWidth: '85px' }}
           onClick={handleOnAdd}
-          type={Button.TYPE.PLAIN_NEUTRAL}
+          type={Button.TYPE.PLAIN}
           iconType={Button.ICON_TYPE.DOCUMENTS__DOCUMENTS__FILE__A_ADD}
           sizeType={Button.SIZE_TYPE.SMALL}
           spacingType={[Button.SPACING_TYPE.OMIT, Button.SPACING_TYPE.SMALL]}
@@ -69,5 +69,5 @@ Tabs.propTypes = {
   handleOnTabChange: PropTypes.func,
   handleOnAdd: PropTypes.func,
   handleOnDelete: PropTypes.func,
-  errorMessage: PropTypes.string
+  errorMessage: PropTypes.string,
 };
