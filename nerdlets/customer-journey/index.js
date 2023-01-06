@@ -10,7 +10,7 @@ import {
 } from 'nr1';
 import { EmptyState } from '@newrelic/nr1-community';
 import StatColumn from './StatColumn';
-import { FunnelComponent } from 'nr1-funnel-component';
+import FunnelComponent from '../components/FunnelComponent';
 import NewJourney from '../components/new-journey/new-journey';
 import AccountPicker from '../components/account-picker';
 import { v4 as uuidv4 } from 'uuid';
