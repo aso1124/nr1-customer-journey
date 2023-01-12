@@ -7,14 +7,14 @@ import {
   BillboardChart,
   LineChart,
   HeadingText,
-  BlockText
+  BlockText,
 } from 'nr1';
 import { timeRangeToNrql } from '@newrelic/nr1-community';
 
 export default class Details extends React.Component {
   static propTypes = {
     platformUrlState: PropTypes.object.isRequired,
-    nerdletUrlState: PropTypes.object.isRequired
+    nerdletUrlState: PropTypes.object.isRequired,
   };
 
   render() {
@@ -69,7 +69,7 @@ export default class Details extends React.Component {
                 <GridItem key={i} columnSpan={4} className="chartContainer">
                   <HeadingText type="heading-3">{kpi.label}</HeadingText>
                   <BillboardChart
-                    accountId={journey.accountId}
+                    accountIds={[journey.accountId]}
                     query={kpi.nrql}
                     className="chart"
                   />
@@ -96,7 +96,7 @@ export default class Details extends React.Component {
               <GridItem key={i} columnSpan={4} className="chartContainer">
                 <HeadingText type="heading-3">{stat.label}</HeadingText>
                 <LineChart
-                  accountId={journey.accountId}
+                  accountIds={[journey.accountId]}
                   query={query}
                   className="chart"
                 />
