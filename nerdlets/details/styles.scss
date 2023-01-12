@@ -1,5 +1,7 @@
 .chart {
   height: 200px;
+  width: 100%;
+  padding-top: 10px;
 }
 
 .slaCell {
@@ -13,32 +15,31 @@
   }
 
   &.visualizationCell {
-      display: block;
+    display: block;
   }
-
 }
 
 .slaCell.violation {
   .chartName {
-    color: #BF0015;
+    color: #bf0015;
   }
 
   .currentValueContainer {
-    border-color: #BF0015;
+    border-color: #bf0015;
     background-color: #fcf2f3;
   }
 
   .slaValueContainer {
-    border-color: #BF0015;
+    border-color: #bf0015;
   }
 
   .currentValue {
-    color: #BF0015;
+    color: #bf0015;
     font-weight: 600;
   }
 
   .currentLabel {
-    color: #BF0015;
+    color: #bf0015;
   }
 
   .slaComparisonIcon {
@@ -47,7 +48,7 @@
   }
 
   .slaComparisonIcon:after {
-    content: "";
+    content: '';
     display: block;
     width: 14px;
     height: 14px;
@@ -69,41 +70,40 @@
   position: relative;
 
   &.skeleton {
+    .value,
+    .label {
+      display: block;
+      background-size: 190%;
+      background-image: linear-gradient(to left, #edeeee, #f4f5f5 40%, #edeeee);
+      border-radius: 2px;
+      animation: loading 0.75s ease-in-out infinite;
+      animation-direction: reverse;
+    }
 
-      .value,
-      .label {
-          display: block;
-          background-size: 190%;
-          background-image: linear-gradient(to left, #edeeee, #f4f5f5 40%, #edeeee);
-          border-radius: 2px;
-          animation: loading .75s ease-in-out infinite;
-          animation-direction: reverse;
-      }
+    .value {
+      width: 50px;
+      height: 19px;
+      margin-bottom: 5px;
+    }
 
-      .value {
-          width: 50px;
-          height: 19px;
-          margin-bottom: 5px;
-      }
-
-      .label {
-          height: 12px;
-          width: 65px;
-      }
+    .label {
+      height: 12px;
+      width: 65px;
+    }
   }
 
   .value {
-      margin-bottom: 1px;
-      font-family: 'fira sans';
-      font-size: 1.5em;
-      font-weight: normal;
-      line-height: 1em;
-      color: #000E0E;
+    margin-bottom: 1px;
+    font-family: 'fira sans';
+    font-size: 1.5em;
+    font-weight: normal;
+    line-height: 1em;
+    color: #000e0e;
   }
 
   .label {
-      font-size: 1em;
-      color: #464E4E;
+    font-size: 1em;
+    color: #464e4e;
   }
 }
 
@@ -122,20 +122,20 @@
   align-items: center;
   margin-right: -1px;
   margin-bottom: 0;
-  border: 1px solid #E3E4E4;
+  border: 1px solid #e3e4e4;
 }
 
 .slaComparisonItemValue {
   font-family: 'fira sans';
   font-weight: 400;
   font-size: 24px;
-  color: #000D0D;
+  color: #000d0d;
   margin-bottom: 6px;
 }
 
 .slaComparisonItemLabel {
   font-size: 10px;
-  color: #464E4E;
+  color: #464e4e;
   text-transform: uppercase;
   letter-spacing: 1px;
   margin-bottom: 0;
@@ -159,6 +159,5 @@
 }
 
 .slaValue {
-  color: #8E9494;
+  color: #8e9494;
 }
-

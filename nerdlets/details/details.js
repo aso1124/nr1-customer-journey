@@ -47,7 +47,7 @@ export default class Details extends React.Component {
 
     return (
       <ChartGroup>
-        <Grid style={{ margin: '20px' }}>
+        <Grid style={{ margin: '20px', width: '98%' }}>
           <GridItem columnSpan={12}>
             <HeadingText
               type="heading-3"
