@@ -9,7 +9,7 @@ import {
   HeadingText,
   BlockText
 } from 'nr1';
-import { timeRangeToNrql } from '@newrelic/nr1-community';
+import { timeRangeToNrql } from '@newrelic/nr-labs-components';
 
 export default class Details extends React.Component {
   static propTypes = {

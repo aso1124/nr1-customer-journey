@@ -4,7 +4,8 @@ import DataPoint from './DataPoint';
 import { NerdGraphQuery, navigation } from 'nr1';
 import get from 'lodash.get';
 import has from 'lodash.has';
-import { timeRangeToNrql, NerdGraphError } from '@newrelic/nr1-community';
+import { timeRangeToNrql } from '@newrelic/nr-labs-components';
+// import { NerdGraphError } from '@newrelic/nr1-community';
 
 function getValue(rs) {
   if (rs) {
@@ -20,7 +21,7 @@ export default class StatCell extends React.Component {
     step: PropTypes.object.isRequired,
     column: PropTypes.object.isRequired,
     config: PropTypes.object.isRequired,
-    platformUrlState: PropTypes.object.isRequired
+    platformUrlState: PropTypes.object.isRequired,
   };
 
   constructor(props) {
@@ -36,8 +37,8 @@ export default class StatCell extends React.Component {
       urlState: {
         selectedJourney: config,
         selectedColumn: column.id,
-        selectedStep: step.id
-      }
+        selectedStep: step.id,
+      },
     });
   };
 
@@ -140,7 +141,7 @@ export default class StatCell extends React.Component {
               );
             }
             if (error) {
-              return <NerdGraphError error={error} />;
+              return <div>{error}</div>;
             }
             const values = {};
             return (
@@ -174,7 +175,7 @@ export default class StatCell extends React.Component {
                   .map((stat, i) => {
                     const {
                       numerator: numeratorField,
-                      denominator: denominatorField
+                      denominator: denominatorField,
                     } = stat.value.calculation;
                     const kpi = kpis
                       ? kpis.find(kpi => kpi.ref === stat.ref)

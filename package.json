@@ -13,19 +13,19 @@
     "email": "opensource+nr1-customer-journey@newrelic.com"
   },
   "dependencies": {
-    "@newrelic/nr1-community": "^1.2.0",
+    "@newrelic/nr-labs-components": "^1.21.2",
     "babel-runtime": "^6.26.0",
     "formik": "^1.5.8",
+    "funnel-graph-js": "^1.4.2",
     "lodash.get": "^4.4.2",
     "lodash.has": "^4.5.2",
+    "nice-color-palettes": "^3.0.0",
     "prop-types": "^15.6.2",
+    "randomstring": "^1.2.3",
     "react": "16.6.3",
     "react-dom": "16.6.3",
     "uuid": "^8.3.0",
-    "yup": "^0.29.3",
-    "funnel-graph-js": "^1.4.2",
-    "nice-color-palettes": "^3.0.0",
-    "randomstring": "^1.2.3"
+    "yup": "^0.29.3"
   },
   "devDependencies": {
     "@newrelic/eslint-plugin-newrelic": "^0.3.1",

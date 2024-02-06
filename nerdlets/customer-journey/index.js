@@ -4,11 +4,12 @@ import {
   AccountStorageMutation,
   AccountStorageQuery,
   Button,
+  EmptyState,
   HeadingText,
   Modal,
-  Spinner
+  Spinner,
 } from 'nr1';
-import { EmptyState } from '@newrelic/nr1-community';
+// import { EmptyState } from '@newrelic/nr1-community';
 import StatColumn from './StatColumn';
 import FunnelComponent from '../components/FunnelComponent';
 import NewJourney from '../components/new-journey/new-journey';
@@ -30,7 +31,7 @@ export default class Wrapper extends React.PureComponent {
       journeyToBeDeleted: undefined,
       isProcessing: true,
       isDeleting: false,
-      isSaving: false
+      isSaving: false,
     };
   }
 
@@ -62,30 +63,30 @@ export default class Wrapper extends React.PureComponent {
 
   loadData = async () => {
     this.setState({
-      isProcessing: true
+      isProcessing: true,
     });
 
     const { selectedAccountId } = this.state;
     const { data } = await AccountStorageQuery.query({
       accountId: selectedAccountId,
-      collection: CUSTOMER_JOURNEY_CONFIGS
+      collection: CUSTOMER_JOURNEY_CONFIGS,
     });
 
     this.setState({
       isProcessing: false,
-      journeys: data
+      journeys: data,
     });
   };
 
   handleAccountSelect = async accountId => {
     this.setState(
       {
-        selectedAccountId: accountId
+        selectedAccountId: accountId,
       },
       async () => {
         await this.loadData();
         this.setState(({ journeys }) => ({
-          currentJourney: journeys.length > 0 ? journeys[0].id : undefined
+          currentJourney: journeys.length > 0 ? journeys[0].id : undefined,
         }));
       }
     );
@@ -110,31 +111,31 @@ export default class Wrapper extends React.PureComponent {
       actionType: AccountStorageMutation.ACTION_TYPE.WRITE_DOCUMENT,
       collection: CUSTOMER_JOURNEY_CONFIGS,
       documentId: journey.id,
-      document: journey
+      document: journey,
     });
 
     this.setState({
       isFormOpen: false,
       journeyToBeEdited: undefined,
-      currentJourney: null
+      currentJourney: null,
     });
 
     await this.loadData();
 
     this.setState({
       isSaving: false,
-      currentJourney: journey.id
+      currentJourney: journey.id,
     });
   };
 
   handleJourneyChange = selectedJourney => {
     this.setState(
       {
-        currentJourney: null
+        currentJourney: null,
       },
       () => {
         this.setState({
-          currentJourney: selectedJourney
+          currentJourney: selectedJourney,
         });
       }
     );
@@ -143,7 +144,7 @@ export default class Wrapper extends React.PureComponent {
   handleOnEdit = journey => {
     this.setState({
       journeyToBeEdited: journey,
-      isFormOpen: true
+      isFormOpen: true,
     });
   };
 
@@ -154,13 +155,13 @@ export default class Wrapper extends React.PureComponent {
   handleOnDelete = document => {
     this.setState({
       isDeleteJourneyActive: true,
-      journeyToBeDeleted: document
+      journeyToBeDeleted: document,
     });
   };
 
   deleteJourney = async () => {
     this.setState({
-      isDeleting: true
+      isDeleting: true,
     });
 
     const { journeyToBeDeleted } = this.state;
@@ -169,21 +170,21 @@ export default class Wrapper extends React.PureComponent {
       documentId: journeyToBeDeleted.id,
       accountId: 1606862,
       collection: CUSTOMER_JOURNEY_CONFIGS,
-      actionType: AccountStorageMutation.ACTION_TYPE.DELETE_DOCUMENT
+      actionType: AccountStorageMutation.ACTION_TYPE.DELETE_DOCUMENT,
     });
 
     this.setState({
       isDeleteJourneyActive: false,
       journeyToBeDeleted: undefined,
       isDeleting: false,
-      currentJourney: undefined
+      currentJourney: undefined,
     });
 
     await this.loadData();
 
     this.setState(prevState => ({
       currentJourney:
-        prevState.journeys.length > 0 ? prevState.journeys[0].id : undefined
+        prevState.journeys.length > 0 ? prevState.journeys[0].id : undefined,
     }));
   };
 
@@ -196,7 +197,7 @@ export default class Wrapper extends React.PureComponent {
       isDeleteJourneyActive,
       isProcessing,
       isDeleting,
-      isSaving
+      isSaving,
     } = this.state;
 
     const journey = journeys.find(journey => journey.id === currentJourney)
@@ -219,18 +220,21 @@ export default class Wrapper extends React.PureComponent {
     } else if (journeys.length === 0) {
       content = (
         <EmptyState
-          buttonText="Add new Journey"
-          buttonOnClick={this.handleFormOpen}
-          heading="No Journeys configured"
+          style={{ width: '100%' }}
+          title="No Journeys configured"
           description="It looks like no Journeys have been defined. To get started,
           define a Journey using the button below and follow the instructions."
+          action={{
+            label: 'Add new Journey',
+            onClick: this.handleFormOpen,
+          }}
         />
       );
     } else if (!journey) {
       content = (
         <EmptyState
-          buttonText=""
-          heading="No Journey selected"
+          style={{ width: '100%' }}
+          title="No Journey selected"
           description="Select Journey from left panel to get started."
         />
       );
@@ -319,13 +323,13 @@ export default class Wrapper extends React.PureComponent {
               spacingType={[
                 Button.SPACING_TYPE.MEDIUM,
                 Button.SPACING_TYPE.OMIT,
-                Button.SPACING_TYPE.MEDIUM
+                Button.SPACING_TYPE.MEDIUM,
               ]}
               type={Button.TYPE.PRIMARY}
               onClick={() =>
                 this.setState({
                   isDeleteJourneyActive: false,
-                  journeyToBeDeleted: undefined
+                  journeyToBeDeleted: undefined,
                 })
               }
             >
